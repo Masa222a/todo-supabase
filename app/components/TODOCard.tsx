@@ -2,25 +2,29 @@ import React from 'react'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link";
 
-const TODOCard = () => {
+interface TODODataProps {
+  todoData: TODOData
+}
+
+const TODOCard = ({todoData}: TODODataProps) => {
+  const {id, title, content, createdAt, updatedAt} = todoData
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>{content}</p>
+        <p>createdAt:{new Date(createdAt).toLocaleString()}  updatedAt:{new Date(updatedAt).toLocaleString()}</p>
       </CardContent>
       <CardFooter>
-        <Link href={"/todo-posts/1"} className="text-blue-500">Read More</Link>
+        <Link href={`/todo-posts/${id}`} className="text-blue-500">Read More</Link>
       </CardFooter>
     </Card>
   )
