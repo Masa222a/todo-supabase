@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Textarea } from '@/components/ui/textarea'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import { postTODO } from '@/app/actions/postTODOAction'
 
 export const formSchema = z.object({
@@ -58,7 +58,7 @@ const CreateTodoPage = () => {
   
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-1/2 px-7">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-1/2 px-7 py-4">
         <FormField
           control={form.control}
           name="title"
@@ -89,7 +89,7 @@ const CreateTodoPage = () => {
             </FormItem>
           )}
         />
-        <Button className='' type="submit">Submit</Button>
+        <Button className='bg-blue-300' type="submit">Submit</Button>
       </form>
     </Form>
   )
