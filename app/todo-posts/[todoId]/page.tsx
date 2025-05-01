@@ -1,4 +1,4 @@
-import { Link } from 'lucide-react'
+import Link from "next/link";
 import React from 'react'
 
 
@@ -24,10 +24,10 @@ const TODODetailPage = async ({params}: {params: {todoId: number}}) => {
         <p className="text-gray-900">{content}</p>
       </div>
 
-      <Link href={"/"} className="bg-slate-300 text-black font-bold py-2 px-4 rounded-md">戻る</Link>
-
-      <p>作成日:{new Date(createdAt).toLocaleString()}</p>
-      <p>更新日:{new Date(updatedAt).toLocaleString()}</p>
+      <p className="py-1">作成日:{new Date(createdAt).toLocaleString()}</p>
+      <p className="py-1 mb-3">更新日:{new Date(updatedAt).toLocaleString()}</p>
+      
+      <Link href={'/'} className="bg-slate-300 text-black py-2 px-4 rounded-md">Home</Link>
     </div>
   )
 }
