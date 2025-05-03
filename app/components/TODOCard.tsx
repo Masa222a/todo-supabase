@@ -53,18 +53,6 @@ const TODOCard = ({todoData}: TODODataProps) => {
             削除
           </Button>
         </div>
-        <div className="flex flex-col items-center space-y-4 p-8">
-          <Button
-            variant="destructive" 
-            size="sm" 
-            className="absolute right-30 bg-orange-500 text-black rounded"
-          >
-          <Trash2 className="mr-2 h-4 w-4" />
-            <Link href={`/todo-posts/${id}/update`}>
-              更新
-            </Link>
-          </Button>
-        </div>
       </CardFooter>
     </Card>
   )
