@@ -27,7 +27,7 @@ export async function DELETE(
   return NextResponse.json(todo)
 }
 
-export async function UPDATE(
+export async function PATCH(
   req: Request, 
   {params}: {params: {todoId: string}},
   updateTodo: TODOData
