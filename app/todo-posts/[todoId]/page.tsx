@@ -17,7 +17,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useRouter } from 'next/navigation'
+import { updateTODO } from '@/app/actions/updateTODOAction'
+// import { useRouter } from 'next/navigation'
 
 
 async function getDetailTODOData(id: number) {
@@ -36,7 +37,7 @@ export const formSchema = z.object({
   content: z
   .string()
   .min(2, {message: "本文は10文字以上で入力して下さい。"})
-  .max(140, {message: "本文は10文字以上で入力して下さい。"})  
+  .max(140, {message: "本文は10文字以上で入力して下さい。"})
 })
 
 const TODODetailPage = ({params}: {params: {todoId: number}}) => {
@@ -59,15 +60,16 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      id: parseInt(todoDetailData.id),
       title: "",
       content: ""
     }
   })
 
   async function onSubmit(value: z.infer<typeof formSchema>) {
-    const {id, title, content} = value
-    updateTodo({id, title, content})
+    const {title, content} = value
+    const id = parseInt(todoDetailData.id)
+    console.log(id,title,content)
+    updateTODO({id, title, content})
   }
 
   if (!todoDetailData) {
@@ -109,7 +111,7 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
             <div className="flex items-center space-x-2">
               <Checkbox 
               id="update_flag"
-              onClick={() => handleChecked(checked)}
+              onCheckedChange={() => handleChecked(checked)}
               />
               <label
                 htmlFor="update_flag"
@@ -126,7 +128,7 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
                   <FormItem>
                     <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input placeholder="タイトル" defaultValue={todoDetailData.title} {...field} />
+                      <Input placeholder={todoDetailData.title} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,8 +142,7 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
                     <FormLabel>本文</FormLabel>
                     <FormControl>
                       <Textarea 
-                        placeholder="投稿内容"
-                        defaultValue={todoDetailData.content}
+                        placeholder={todoDetailData.content}
                         className='resize-none'
                         {...field}
                       />
