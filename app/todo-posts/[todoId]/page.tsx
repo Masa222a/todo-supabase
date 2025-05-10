@@ -82,6 +82,7 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
             <Checkbox 
             id="update_flag"
             onClick={() => handleChecked(checked)}
+            checked={checked}
             />
             <label
               htmlFor="update_flag"
@@ -112,12 +113,13 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
               <Checkbox 
               id="update_flag"
               onCheckedChange={() => handleChecked(checked)}
+              checked={checked}
               />
               <label
                 htmlFor="update_flag"
                 className="text-sm font-medium leading-none"
               >
-                編集する
+                詳細へ戻る
               </label>
             </div>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-1/2 py-4">
@@ -128,7 +130,10 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
                   <FormItem>
                     <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input placeholder={todoDetailData.title} {...field} />
+                      <Input 
+                        // placeholder={todoDetailData.title}
+                        defaultValue={todoDetailData.title}
+                        {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -142,7 +147,8 @@ const TODODetailPage = ({params}: {params: {todoId: number}}) => {
                     <FormLabel>本文</FormLabel>
                     <FormControl>
                       <Textarea 
-                        placeholder={todoDetailData.content}
+                        // placeholder={todoDetailData.content}
+                        defaultValue={todoDetailData.content}
                         className='resize-none'
                         {...field}
                       />
